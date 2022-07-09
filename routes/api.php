@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/twitch', [TwitchController::class,'auth'])->name('twitch.auth');
+Route::get('/twitch/auth', [TwitchController::class,'getAuthLink'])->name('twitch.auth');
+Route::get('/twitch/login', [TwitchController::class,'loginByTwitch'])->name('twitch.token');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

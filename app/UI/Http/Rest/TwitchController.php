@@ -2,11 +2,12 @@
 
 namespace App\UI\Http\Rest;
 
+use Application\Twitch\Command\TokenCommand;
 use Application\Twitch\TwitchApplicationService;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Redirect;
 
 class TwitchController extends BaseController
 {
@@ -17,8 +18,15 @@ class TwitchController extends BaseController
         $this->twitchApplicationService = $twitchApplicationService;
     }
 
-    public function auth()
+    public function getAuthLink(): RedirectResponse
     {
-        return $this->twitchApplicationService->makeAuthWithTwitch();
+       return Redirect::to($this->twitchApplicationService->makeAuthWithTwitch());
+    }
+
+    public function loginByTwitch(): RedirectResponse
+    {
+        $tokenCommand = (new TokenCommand())->setAccessToken(request()->code);
+        $this->twitchApplicationService->loginByTwitch($tokenCommand);
+      //  return Redirect::to($this->twitchApplicationService->makeAuthWithTwitch());
     }
 }
