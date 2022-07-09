@@ -2,11 +2,11 @@
 
 namespace App\UI\Http;
 
-use App\UI\Http\Middleware\EncryptCookies;
-use App\UI\Http\Middleware\PreventRequestsDuringMaintenance;
-use App\UI\Http\Middleware\TrimStrings;
-use App\UI\Http\Middleware\TrustProxies;
-use App\UI\Http\Middleware\VerifyCsrfToken;
+use App\Application\Middleware\EncryptCookies;
+use App\Application\Middleware\PreventRequestsDuringMaintenance;
+use App\Application\Middleware\TrimStrings;
+use App\Application\Middleware\TrustProxies;
+use App\Application\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
