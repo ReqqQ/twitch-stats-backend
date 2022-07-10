@@ -3,6 +3,7 @@
 use App\Application\Providers\AppServiceProvider;
 use App\Application\Providers\AuthServiceProvider;
 use App\Application\Providers\EventServiceProvider;
+use App\Application\Providers\RepositoryServiceProvider;
 use App\Application\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
@@ -195,6 +196,7 @@ return [
          */
         AppServiceProvider::class,
         AuthServiceProvider::class,
+        RepositoryServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         EventServiceProvider::class,
         RouteServiceProvider::class,

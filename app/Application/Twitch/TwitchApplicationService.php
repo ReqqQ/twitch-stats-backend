@@ -4,12 +4,17 @@ namespace Application\Twitch;
 
 use Application\Twitch\Command\TokenCommand;
 use Domain\SocialPlatforms\Twitch\TwitchSocialRepositoryService;
+use Domain\Users\UserDbService;
+use Symfony\Component\HttpFoundation\Cookie as CookieInstance;
+use Illuminate\Support\Facades\Cookie;
 class TwitchApplicationService
 {
     private TwitchSocialRepositoryService $twitchSocialRepositoryService;
-    public function __construct(TwitchSocialRepositoryService $twitchSocialRepositoryService)
+    private UserDbService $userDbService;
+    public function __construct(TwitchSocialRepositoryService $twitchSocialRepositoryService,UserDbService $userDbService)
     {
         $this->twitchSocialRepositoryService= $twitchSocialRepositoryService;
+        $this->userDbService = $userDbService;
     }
 
     public function makeAuthWithTwitch(): string
@@ -18,8 +23,12 @@ class TwitchApplicationService
     }
 
     public function loginByTwitch(TokenCommand $tokenCommand){
-        $response = $this->twitchSocialRepositoryService->getUserTokenFromTwitch($tokenCommand->getAccessToken());
+//        if($this->userDbService->hasUserAccount($tokenCommand->getAccessToken())){
+//
+//        }
 
-        dd($response);
+        Cookie::queue(cookie('aloalo', 'MyValue', 30));
+
+        return $this->twitchSocialRepositoryService->getUserTokenFromTwitch($tokenCommand->getAccessToken());
     }
 }

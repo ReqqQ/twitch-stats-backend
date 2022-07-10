@@ -27,6 +27,7 @@ class TwitchController extends BaseController
     {
         $tokenCommand = (new TokenCommand())->setAccessToken(request()->code);
         $this->twitchApplicationService->loginByTwitch($tokenCommand);
-      //  return Redirect::to($this->twitchApplicationService->makeAuthWithTwitch());
+
+        return Redirect::to('/');
     }
 }
