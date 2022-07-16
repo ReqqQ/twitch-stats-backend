@@ -4,16 +4,16 @@ namespace Application\Twitch\Command;
 
 class TokenCommand
 {
-    private string $accessToken;
+    private string $twitchLoginCode;
 
-    public function getAccessToken()
+    public function getTwitchLoginCode()
     {
-        return $this->accessToken;
+        return $this->twitchLoginCode;
     }
 
-    public function setAccessToken($accessToken): static
+    public function setAccessToken($twitchLoginCode): static
     {
-        $this->accessToken = $accessToken;
+        $this->twitchLoginCode = $twitchLoginCode;
 
         return $this;
     }

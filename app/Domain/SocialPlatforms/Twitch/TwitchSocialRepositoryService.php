@@ -2,6 +2,7 @@
 
 namespace Domain\SocialPlatforms\Twitch;
 
+use Domain\SocialPlatforms\Twitch\Entity\TwitchUserDataEntity;
 use Domain\SocialPlatforms\Twitch\Entity\TwitchUserTokenEntity;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
@@ -32,13 +33,38 @@ class TwitchSocialRepositoryService
         ];
     }
 
-    public function getUserTokenFromTwitch(string $accessToken): ?TwitchUserTokenEntity
+    public function getUserData(string $userToken): ?TwitchUserDataEntity
+    {
+        $response = $this->client->get(env('TWITCH_USER_ENDPOINT'), [
+            'headers' => [
+                'Authorization' => "Bearer $userToken",
+                'Client-id' =>env("TWITCH_CLIENT_ID")
+            ]
+        ]);
+        if ($response->getStatusCode() != 200) {
+            return null;
+        }
+        $response = current(json_decode($response->getBody()->getContents(), false)->data);
+
+        return (new TwitchUserDataEntity())
+            ->setId($response->id)
+            ->setLogin($response->login)
+            ->setDisplayName($response->display_name)
+            ->setBroadcasterType($response->broadcaster_type)
+            ->setDescription($response->description)
+            ->setProfileImageUrl($response->profile_image_url)
+            ->setViewCount($response->view_count)
+            ->setEmail($response->email)
+            ->setCreatedAt($response->created_at);
+    }
+
+    public function getUserTokenFromTwitch(string $twitchLoginCode): ?TwitchUserTokenEntity
     {
         $response = $this->client->post(env("TWITCH_TOKEN_URL"), [
             'json' => [
                 'client_id' => env("TWITCH_CLIENT_ID"),
                 'client_secret' => env("TWITCH_SECRET_ID"),
-                'code' => $accessToken,
+                'code' => $twitchLoginCode,
                 'grant_type' => 'authorization_code',
                 'redirect_uri' => env("TWITCH_REDIRECT_URL")
             ]

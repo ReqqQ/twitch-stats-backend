@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('social_access_token', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
-            $table->string('login');
-            $table->string('display_name');
-            $table->boolean('is_active')->default(1);
+            $table->unsignedBigInteger('user_id');
+            $table->string('social_type');
+            $table->json('token');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('social_access_token');
     }
 };

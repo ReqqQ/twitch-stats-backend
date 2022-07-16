@@ -2,14 +2,20 @@
 
 namespace Infrastructure\Users;
 
-use Domain\Users\Entity\UsersModel;
+use Domain\Users\Entity\UsersEntity;
 use Domain\Users\IUsersDbRepository;
 use Illuminate\Database\Eloquent\Model;
 
 class UsersDbRepository implements IUsersDbRepository
 {
-    public function getUser(string $codeTwitchUser): Model|null
+    public function getUser(string $userEmail): Model|null
     {
-        return UsersModel::query()->whereJsonContains(UsersModel::CUSTOM_PARAMS, ['code' => $codeTwitchUser])->first();
+        return UsersEntity::query()->where('email', $userEmail)->first();
+    }
+
+    public function saveUser(UsersEntity $usersEntity): UsersEntity|null
+    {
+        $isCreated = $usersEntity->save();
+        return $isCreated ? $usersEntity : null;
     }
 }
