@@ -12,9 +12,14 @@ class UsersTokenDbRepository
         return UsersTokenEntity::query()->where('user_id', $userId)->where('token', $userToken)->exists();
     }
 
-    public function getUserToken(int $userId): UsersTokenEntity|Model
+    public function getUserToken(int $userId): UsersTokenEntity|Model|null
     {
         return UsersTokenEntity::query()->where('user_id', $userId)->first();
+    }
+
+    public function getUserByToken(string $cookieToken): UsersTokenEntity|Model|null
+    {
+        return UsersTokenEntity::query()->where('token', $cookieToken)->first();
     }
 
     public function updateUserToken(UsersTokenEntity $usersTokenEntity)

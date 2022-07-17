@@ -7,6 +7,7 @@ use App\Application\Middleware\PreventRequestsDuringMaintenance;
 use App\Application\Middleware\TrimStrings;
 use App\Application\Middleware\TrustProxies;
 use App\Application\Middleware\VerifyCsrfToken;
+use Application\Middleware\Cookie;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
@@ -68,6 +69,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        'cookie' => Cookie::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

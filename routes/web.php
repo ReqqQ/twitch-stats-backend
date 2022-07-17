@@ -15,3 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [LoginController::class, 'home'])->name('login.home');
+Route::group(['middleware' => ['cookie']], function () {
+    Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('login.home');
+});

@@ -11,7 +11,7 @@ class UsersTokenService
 {
     private const ONE_DAY_IN_SECODNS = 86400;
     private const ONE_DAY_IN_MINUTES = 1440;
-    private const USER_TOKEN = 'userToken';
+    public const USER_TOKEN = 'userToken';
     private UsersTokenDbRepository $usersTokenDbRepository;
 
     public function __construct(UsersTokenDbRepository $usersTokenDbRepository)
@@ -19,7 +19,12 @@ class UsersTokenService
         $this->usersTokenDbRepository = $usersTokenDbRepository;
     }
 
-    public function setTokenCookie(string $userToken)
+    public function getUserByToken(string $cookieToken): ?UsersTokenEntity
+    {
+        return $this->usersTokenDbRepository->getUserByToken($cookieToken);
+    }
+
+    public function setTokenCookie(string $userToken): void
     {
         Cookie::queue(cookie(self::USER_TOKEN, $userToken, self::ONE_DAY_IN_MINUTES, null, null, false, true));
     }
