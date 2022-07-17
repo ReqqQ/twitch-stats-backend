@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('users', static function (Blueprint $table) {
             $table->id();
-            $table->string('google_id');
-            $table->string('email');
+            $table->string('google_id')->index('index_google_id');
+            $table->string('email')->index('index_email');
             $table->string('avatar');
             $table->string('display_name');
             $table->json('custom_params');

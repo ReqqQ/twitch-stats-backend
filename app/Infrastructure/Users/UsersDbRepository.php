@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UsersDbRepository implements IUsersDbRepository
 {
-    public function getUser(string $userEmail): Model|null
+    public function getUser(string $userEmail): UsersEntity|Model|null
     {
         return UsersEntity::query()->where('email', $userEmail)->first();
     }

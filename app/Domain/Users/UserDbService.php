@@ -3,6 +3,7 @@
 namespace Domain\Users;
 
 use Domain\Users\Entity\UsersEntity;
+use Illuminate\Database\Eloquent\Model;
 
 class UserDbService
 {
@@ -13,9 +14,9 @@ class UserDbService
         $this->usersDbRepository = $usersDbRepository;
     }
 
-    public function hasUserAccount(string $userEmail): bool
+    public function getUser(string $userEmail): ?UsersEntity
     {
-        return $this->usersDbRepository->getUser($userEmail)->exists;
+        return $this->usersDbRepository->getUser($userEmail);
     }
 
     public function createUser(UsersEntity $usersEntity): UsersEntity

@@ -22,5 +22,6 @@ class GoogleController
 
     public function userFromGoogle(){
         $this->googleService->createGoogleUser();
+        return view('pages.home');
     }
 }
