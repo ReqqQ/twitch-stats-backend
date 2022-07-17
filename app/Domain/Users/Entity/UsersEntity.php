@@ -13,9 +13,11 @@ class UsersEntity extends Model
 
     protected $fillable = [
         'id',
+        'google_id',
         'email',
-        'login',
+        'avatar',
         'display_name',
+        'custom_params',
         'is_active'
     ];
 
@@ -28,18 +30,23 @@ class UsersEntity extends Model
         return $this->attributes['id'];
     }
 
-    /**
-     * @return string
-     */
+    public function getGoogleId(): string
+    {
+        return $this->attributes['google_id'];
+    }
+
+    public function setGoogleId(string $userGoogleId): UsersEntity
+    {
+        $this->attributes['google_id'] = $userGoogleId;
+
+        return $this;
+    }
+
     public function getEmail(): string
     {
         return $this->attributes['email'];
     }
 
-    /**
-     * @param  string  $email
-     * @return UsersEntity
-     */
     public function setEmail(string $email): UsersEntity
     {
         $this->attributes['email'] = $email;
@@ -47,40 +54,38 @@ class UsersEntity extends Model
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getLogin(): string
+    public function getAvatar(): string
     {
-        return $this->attributes['login'];
+        return $this->attributes['avatar'];
     }
 
-    /**
-     * @param  string  $login
-     * @return UsersEntity
-     */
-    public function setLogin(string $login): UsersEntity
+    public function setAvatar(string $avatarUrl): UsersEntity
     {
-        $this->attributes['login'] = $login;
+        $this->attributes['avatar'] = $avatarUrl;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDisplayName(): string
     {
         return $this->attributes['display_name'];
     }
 
-    /**
-     * @param  string  $display_name
-     * @return UsersEntity
-     */
     public function setDisplayName(string $display_name): UsersEntity
     {
         $this->attributes['display_name'] = $display_name;
+
+        return $this;
+    }
+
+    public function getCustomParams(): string
+    {
+        return $this->attributes['custom_params'];
+    }
+
+    public function setCustomParams(UsersCustomParamsEntity $customParamsEntity): UsersEntity
+    {
+        $this->attributes['custom_params'] = $customParamsEntity->toJson();
 
         return $this;
     }

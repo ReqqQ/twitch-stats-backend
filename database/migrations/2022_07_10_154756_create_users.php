@@ -11,13 +11,15 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('users', static function (Blueprint $table) {
             $table->id();
+            $table->string('google_id');
             $table->string('email');
-            $table->string('login');
+            $table->string('avatar');
             $table->string('display_name');
+            $table->json('custom_params');
             $table->boolean('is_active')->default(1);
             $table->timestamps();
         });
