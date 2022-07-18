@@ -22,6 +22,6 @@ class GoogleController
 
     public function userFromGoogle(){
         $this->googleService->createGoogleUser();
-        return Redirect::to('/');
+        return Redirect::to('/dashboard');
     }
 }
