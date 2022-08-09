@@ -4,7 +4,7 @@ namespace Application\Twitch;
 
 use Application\Twitch\Command\TokenCommand;
 use Domain\ApiTokens\AccessTokenService;
-use Domain\SocialPlatforms\Twitch\TwitchSocialRepositoryService;
+use Domain\Repository\Twitch\TwitchSocialRepositoryService;
 use Domain\Users\UserDbService;
 use Symfony\Component\HttpFoundation\Cookie as CookieInstance;
 use Illuminate\Support\Facades\Cookie;

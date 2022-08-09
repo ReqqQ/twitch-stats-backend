@@ -1,9 +1,9 @@
 <?php
 
-namespace Domain\SocialPlatforms\Twitch;
+namespace Domain\Repository\Twitch;
 
+use Domain\Repository\Twitch\Entity\TwitchUserTokenEntity;
 use Domain\SocialPlatforms\Twitch\Entity\TwitchUserDataEntity;
-use Domain\SocialPlatforms\Twitch\Entity\TwitchUserTokenEntity;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 
@@ -28,7 +28,7 @@ class TwitchSocialRepositoryService
         return [
             "client_id" => env("TWITCH_CLIENT_ID"),
             "redirect_uri" => env("TWITCH_REDIRECT_URL"),
-            "scope" => "user:read:email",
+            "scope" => "user:read:email analytics:read:games",
             "response_type" => 'code',
         ];
     }

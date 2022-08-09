@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\SocialPlatforms\Twitch\Entity;
+namespace Domain\Repository\Twitch\Entity;
 
 class TwitchUserTokenEntity
 {

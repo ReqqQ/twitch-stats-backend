@@ -5,8 +5,8 @@ namespace Application\Twitch;
 use Domain\ApiTokens\AccessTokenService;
 use Domain\ApiTokens\Entity\AccessTokenEntity;
 use Domain\ApiTokens\Entity\TokenEntity;
+use Domain\Repository\Twitch\Entity\TwitchUserTokenEntity;
 use Domain\SocialPlatforms\Twitch\Entity\TwitchUserDataEntity;
-use Domain\SocialPlatforms\Twitch\Entity\TwitchUserTokenEntity;
 use Domain\Users\Entity\UsersEntity;
 
 class TwitchEntityService
