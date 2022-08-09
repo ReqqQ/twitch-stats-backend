@@ -2,10 +2,11 @@
 
 namespace App\Application\Providers;
 
+use Domain\Users\IUsersDbRepository;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Sanctum\Sanctum;
+use Infrastructure\Users\UsersDbRepository;
 
-class AppServiceProvider extends ServiceProvider
+class RepositoryServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -14,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Sanctum::ignoreMigrations();
+        $this->app->bind(IUsersDbRepository::class, UsersDbRepository::class);
     }
 
     /**

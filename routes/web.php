@@ -1,5 +1,6 @@
 <?php
 
+use App\UI\Http\Web\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [LoginController::class, 'home'])->name('login.home');
+Route::group(['middleware' => ['cookie']], function () {
+    Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('login.home');
 });

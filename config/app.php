@@ -3,6 +3,7 @@
 use App\Application\Providers\AppServiceProvider;
 use App\Application\Providers\AuthServiceProvider;
 use App\Application\Providers\EventServiceProvider;
+use App\Application\Providers\RepositoryServiceProvider;
 use App\Application\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
@@ -163,6 +164,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Laravel\Socialite\SocialiteServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -195,6 +197,7 @@ return [
          */
         AppServiceProvider::class,
         AuthServiceProvider::class,
+        RepositoryServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         EventServiceProvider::class,
         RouteServiceProvider::class,
@@ -213,7 +216,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class
     ])->toArray(),
 
 ];

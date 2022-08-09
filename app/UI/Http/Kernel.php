@@ -2,11 +2,12 @@
 
 namespace App\UI\Http;
 
-use App\UI\Http\Middleware\EncryptCookies;
-use App\UI\Http\Middleware\PreventRequestsDuringMaintenance;
-use App\UI\Http\Middleware\TrimStrings;
-use App\UI\Http\Middleware\TrustProxies;
-use App\UI\Http\Middleware\VerifyCsrfToken;
+use App\Application\Middleware\EncryptCookies;
+use App\Application\Middleware\PreventRequestsDuringMaintenance;
+use App\Application\Middleware\TrimStrings;
+use App\Application\Middleware\TrustProxies;
+use App\Application\Middleware\VerifyCsrfToken;
+use Application\Middleware\Cookie;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
@@ -44,6 +45,7 @@ class Kernel extends HttpKernel
             EncryptCookies::class,
             AddQueuedCookiesToResponse::class,
             StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             ShareErrorsFromSession::class,
             VerifyCsrfToken::class,
             SubstituteBindings::class,
@@ -52,7 +54,10 @@ class Kernel extends HttpKernel
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            SubstituteBindings::class,
+            EncryptCookies::class,
+            AddQueuedCookiesToResponse::class,
+            StartSession::class,
         ],
     ];
 
@@ -64,6 +69,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        'cookie' => Cookie::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
