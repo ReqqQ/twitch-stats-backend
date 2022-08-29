@@ -1,3 +1,67 @@
 .bg-purple{
-    background: blueviolet!important;
+    background: rgba(0, 0, 0, 0.37)!important;
+}
+.text-purple{
+    color: rgba(203, 125, 208, 1)!important;
+}
+.login-text-width{
+    width: 250px;
+    justify-content: center;
+}
+#loginBackground{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.z-index-1{
+    z-index: 1;
+}
+@media (min-width: 992px){
+    .dashboard {
+        height: 100vh!important;
+    }
+}
+.btn-outline-purple{
+    border-color: purple!important;
+    color: purple!important;
+}
+.content-top-info{
+    background: rgba(20, 6, 55, 0.9);
+    border:1px solid purple;
+    border-radius: 10px;
+    color: purple;
+}
+.btn-outline-purple:hover{
+    background: #800080FF!important;
+    color: white!important;
+}
+.sidebar-background{
+    background: rgba(20, 6, 55, 0.9);
+}
+.font-swanky{
+    font-family: 'Swanky and Moo Moo', sans-serif;
+}
+.connect-text{
+    font-size: 1.5em;
+}
+.login-text{
+    font-size: 3em;
+    background: -webkit-linear-gradient(#0E2F84, #CFD8DC, #2B4B9B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+.login-box{
+    background: rgba(22, 21, 37, 0.95);
+    border-radius: 50px;
+    width: 320px;
+    display: flex;
+    height: 320px;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: column;
+    align-items: center;
 }
